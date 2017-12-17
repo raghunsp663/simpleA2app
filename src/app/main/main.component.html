@@ -1,0 +1,46 @@
+<div class="login-page">
+  <div class="form">
+    <form class="login-form" *ngIf="showMobForm">
+      <!-- <input type="text" placeholder="Enter your mobile number" /> -->
+      <!-- <input type="number" id="title" required minlength="10" maxlength="10" [(ngModel)]="model.title" name="title" #title="ngModel" placeholder="Enter your mobile number">
+      <button>Send Me OTP</button>
+      <div *ngIf="title.errors && (title.dirty || title.touched)">
+        <div [hidden]="!title.errors.required">
+          Mobile number is required!
+        </div>
+        <div [hidden]="!title.errors.minlength">
+          Invalid number format
+        </div>
+        <div [hidden]="!title.errors.number">
+          Accepts only numbers
+        </div>
+        <div [hidden]="!title.errors.maxlength">
+          Invalid number format
+        </div>
+      </div> -->
+      <h2 style="margin: 0px 0 15px 0px;">BookMYInsurance</h2>
+      <input type="text" class="form-control" id="mobilenumber" required [(ngModel)]="model.phone" name="mobilenumber" pattern="[0-9]*" minlength="10" maxlength="10" #mobile="ngModel" placeholder="Enter your mobile number">
+
+      <button [disabled]="mobile.invalid" [ngClass]="{disabled : mobile.invalid}" (click)="showOTPForm()">Send Me OTP</button>
+
+      <div [hidden]="mobile.valid || mobile.pristine" class="alert-msg">
+        <div [hidden]="!mobile.hasError('minlength')">Mobile should be 10 digits</div>
+        <div [hidden]="!mobile.hasError('required')">Mobile is required</div>
+        <div [hidden]="!mobile.hasError('pattern')">Mobile number should be only numbers</div>
+      </div>
+    </form>
+
+    <form class="login-form" *ngIf="showFormOTP">
+      <h2 style="margin: 0px 0 15px 0px;">BookMYInsurance</h2>
+      <input type="text" class="form-control" id="otp" required [(ngModel)]="otp.otp" name="otp" pattern="[0-9]*" minlength="5" maxlength="5" #otp="ngModel" placeholder="Enter OTP sent to your mobile">
+
+      <button (click)="verifyOTP()">Verify OTP</button>
+
+      <div [hidden]="otp.valid || otp.pristine" class="alert-msg">
+        <div [hidden]="!otp.hasError('minlength')">OTP should be atleast 5 digits</div>
+        <div [hidden]="!otp.hasError('required')">OTP is required</div>
+        <div [hidden]="!otp.hasError('pattern')">OTP should be only numbers</div>
+      </div>
+    </form>
+  </div>
+</div>
