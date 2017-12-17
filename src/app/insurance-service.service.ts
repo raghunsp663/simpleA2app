@@ -43,9 +43,31 @@ export class InsuranceServiceService {
       .map((response: Response) => response.json());
   }
 
+  verifyOTP(data: object): Observable<Object[]> {
+    const header = new Headers();
+    this.createAuthorizationHeader(header);
+    return this.http.post('http://bookmyinsurance.co.in/api/verify-otp', data, {
+      headers: header
+    })
+    .map((response: Response) => response.json());
+  }
 
-  // create(course) {
-  //   return this.http.post('/courses', course);
-  // }
+  searchVehicle(data: object): Observable<Object[]> {
+    const header = new Headers();
+    this.createAuthorizationHeader(header);
+    return this.http.post('http://bookmyinsurance.co.in/api/find-vehicle-no', data, {
+      headers: header
+    })
+    .map((response: Response) => response.json());
+  }
+
+  addVehicle(data: object): Observable<Object[]> {
+    const header = new Headers();
+    this.createAuthorizationHeader(header);
+    return this.http.post('http://bookmyinsurance.co.in/api/new-vehicle', data, {
+      headers: header
+    })
+    .map((response: Response) => response.json());
+  }
 
 }
