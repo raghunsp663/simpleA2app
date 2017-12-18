@@ -32,9 +32,10 @@
 
     <form class="login-form" *ngIf="showFormOTP">
       <h2 style="margin: 0px 0 15px 0px;">BookMYInsurance</h2>
-      <input type="text" class="form-control" id="otp" required [(ngModel)]="otp.otp" name="otp" pattern="[0-9]*" minlength="5" maxlength="5" #otp="ngModel" placeholder="Enter OTP sent to your mobile">
+      <input type="text" class="form-control" id="otp" required [(ngModel)]="otpObj.otp" name="otp" pattern="[0-9]*" minlength="5" maxlength="5" #otp="ngModel" placeholder="Enter OTP sent to your mobile">
 
-      <button (click)="verifyOTP()">Verify OTP</button>
+      <button (click)="verifyOTP()" style="width:130px !important;">Verify OTP</button>
+      <button (click)="changeNumber()" style="width:130px !important;">Back</button>
 
       <div [hidden]="otp.valid || otp.pristine" class="alert-msg">
         <div [hidden]="!otp.hasError('minlength')">OTP should be atleast 5 digits</div>

@@ -8,29 +8,23 @@ import {myInterceptor} from './interceptor';
 export class InsuranceServiceService {
 
   public token: string;
+
   constructor(private http: Http) {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
-   }
+    this.token = localStorage.getItem('token');
+  }
 
   createAuthorizationHeader(headers: Headers) {
     headers.append('Content-Type', 'application/json');
-    headers.append('x-api-key', `NffrwDM2gIcFmNboeHiKu`);
+    headers.append('x-api-key', 'NffrwDM2gIcFmNboeHiKu');
+    headers.append('X-Requested-With', 'XMLHttpRequest');
   }
 
-  // listClients() {
-  //   return this.http.get('listOfClients').map((response: Response) => response.json());
-  // }
-
-  // listProducts(brand: Number) {
-  //   return this.http.get(`listOfProducts?brand=${brand}`)
-  //     .map((response: Response) => response.json());
-  // }
-
-  // listTopics(brand: Number, product: Number) {
-  //   return this.http.get(`listOfProducts?brand=${brand}&productId=${product}`)
-  //     .map((response: Response) => response.json());
-  // }
+  createAuthorizationHeaderWithToken(headers: Headers) {
+    headers.append('Content-Type', 'application/json');
+    headers.append('x-api-key', 'NffrwDM2gIcFmNboeHiKu');
+    headers.append('X-Requested-With', 'XMLHttpRequest');
+    headers.append('Authorization', `Bearer ${this.token}`);
+  }
 
   sendOTP(data: object): Observable<Object[]> {
     // return this.http.post('http://bookmyinsurance.co.in/api/send-otp', data )
@@ -54,7 +48,7 @@ export class InsuranceServiceService {
 
   searchVehicle(data: object): Observable<Object[]> {
     const header = new Headers();
-    this.createAuthorizationHeader(header);
+    this.createAuthorizationHeaderWithToken(header);
     return this.http.post('http://bookmyinsurance.co.in/api/find-vehicle-no', data, {
       headers: header
     })
@@ -63,7 +57,7 @@ export class InsuranceServiceService {
 
   addVehicle(data: object): Observable<Object[]> {
     const header = new Headers();
-    this.createAuthorizationHeader(header);
+    this.createAuthorizationHeaderWithToken(header);
     return this.http.post('http://bookmyinsurance.co.in/api/new-vehicle', data, {
       headers: header
     })

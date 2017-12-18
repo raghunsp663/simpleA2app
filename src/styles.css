@@ -224,3 +224,16 @@ tr:nth-child(even) {
 .disabled{
     cursor: not-allowed !important;
 }
+
+.select-css {
+  width: 100%;
+  height: 45px;
+  padding: 5px;
+  background: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  margin-bottom: 16px;
+  /* font-family: Roboto sans-serif; */
+  outline: 0;
+  font-size: 14px;
+  color: #757575;
+}

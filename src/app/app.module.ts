@@ -40,3 +40,4 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

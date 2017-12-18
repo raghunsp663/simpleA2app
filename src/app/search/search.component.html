@@ -2,16 +2,16 @@
 
   <div class="search-form" style="margin-bottom: 20px !important;">
     <form>
-      <input type="text" class="form-control" required id="search" [(ngModel)]="model.search" name="search" pattern="[a-zA-Z][0-9]+" minlength="6" maxlength="10" #search="ngModel" placeholder="Enter the vehicle registration number">
-      <div [hidden]="search.valid || search.pristine" class="alert-msg">
-        <!-- <div [hidden]="!search.hasError('minlength') || !search.hasError('maxlength') || !search.hasError('pattern')">Invalid registration number</div> -->
-        <div [hidden]="!search.hasError('minlength')">Mobile should be 10 digits</div>
-        <div [hidden]="!search.hasError('required')">Mobile is required</div>
-        <div [hidden]="!search.hasError('pattern')">Mobile number should be only numbers</div>
-      </div>
+      <input type="text" class="form-control" required id="search" [(ngModel)]="model.search" name="search" pattern="[a-zA-Z0-9]*" minlength="6" maxlength="10" #search="ngModel" placeholder="Enter the vehicle registration number">
       <button (click)="searchVehicle()">Search</button>
       <button (click)="addVehicle()">Add Vehicle</button>
-      <button style="float:right" [routerLink]="['/main']">Back</button>
+      <button style="float:right" (click)="navigateMain()">Logout</button><br>
+      <div [hidden]="search.valid || search.pristine" class="alert-msg">
+        <!-- <div [hidden]="!search.hasError('minlength') || !search.hasError('maxlength') || !search.hasError('pattern')">Invalid registration number</div> -->
+        <div [hidden]="!search.hasError('minlength')">Registration number should be 10 digits</div>
+        <div [hidden]="!search.hasError('required')">Registration number is required</div>
+        <div [hidden]="!search.hasError('pattern')">Registration number should be only numbers</div>
+      </div>
     </form>
   </div>
 
@@ -19,31 +19,31 @@
     <table border="1">
       <tr>
         <th>Vehicle Number</th>
-        <td>KA 17 EF 0939</td>  
+        <td>{{find.vehicle_no}}</td>  
       </tr>
       <tr>
         <th>Model Name</th>
-        <td>Honda Shine</td>
+        <td>{{find.vehicle_model_name}}</td>
       </tr>
       <tr>
         <th>Registered Year</th>
-        <td>2016</td>
+        <td>{{find.vehicle_registered_year}}</td>
       </tr>
       <tr>
         <th>Chasis number</th>
-        <td>646464646464</td>
+        <td>{{find.vehicle_chasis_no}}</td>
       </tr>
       <tr>
         <th>Engine number</th>
-        <td>646464646464</td>
+        <td>{{find.vehicle_engine_no}}</td>
       </tr>
       <tr>
         <th>Owner Name</th>
-        <td>Raghavendra NS</td>
+        <td>{{find.vehicle_owner_name}}</td>
       </tr>
       <tr>
         <th>Owner Address</th>
-        <td>#663 2nd main 8th cross Davanagere</td>
+        <td>{{find.vehicle_owner_address}}</td>
       </tr>
     </table>
   </div>
@@ -76,7 +76,7 @@
 
       <input type="text" class="form-control" id="year" required [(ngModel)]="vehicle.vehicles_new_registered_year" name="year" #year="ngModel" placeholder="Enter year of manufacture" [disabled]="true">
 
-      <input type="text" class="form-control" id="modelID" required [(ngModel)]="vehicle.vehicles_new_model_id" name="modelID" #modelID="ngModel" placeholder="Enter model number" [disabled]="true">
+      <!-- <input type="text" class="form-control" id="modelID" required [(ngModel)]="vehicle.vehicles_new_model_id" name="modelID" #modelID="ngModel" placeholder="Enter model number" [disabled]="true"> -->
 
       <input type="text" class="form-control" id="ownerName" required [(ngModel)]="vehicle.vehicles_new_owner_name" name="ownerName" pattern="[a-zA-z ]*" maxlength="30" #ownerName="ngModel" placeholder="Enter owner name">
       <div [hidden]="ownerName.valid || ownerName.pristine" class="alert-msg-new-veh">
@@ -89,6 +89,11 @@
       <div [hidden]="ownerAddr.valid || ownerAddr.pristine" class="alert-msg-new-veh">
         <div [hidden]="!ownerAddr.hasError('required')">Address is required</div>
       </div>
+
+      <select class="form-control select-css" required [(ngModel)]="vehicle.vehicles_new_model_id" id="vehicles_new_model_id" name="vehicles_new_model_id">
+        <option [disabled]="true" value=''>Select a model</option>
+        <option *ngFor="let c of vehicleModel" [value]="c.id">{{c.name}}</option>
+      </select>
       
       <button type="submit" [ngClass]="{disabled : !addVehicle.form.valid}" [disabled]="!addVehicle.form.valid">Add new vehicle details</button>
     </form>
