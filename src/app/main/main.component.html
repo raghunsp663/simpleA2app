@@ -1,23 +1,6 @@
 <div class="login-page">
   <div class="form">
     <form class="login-form" *ngIf="showMobForm">
-      <!-- <input type="text" placeholder="Enter your mobile number" /> -->
-      <!-- <input type="number" id="title" required minlength="10" maxlength="10" [(ngModel)]="model.title" name="title" #title="ngModel" placeholder="Enter your mobile number">
-      <button>Send Me OTP</button>
-      <div *ngIf="title.errors && (title.dirty || title.touched)">
-        <div [hidden]="!title.errors.required">
-          Mobile number is required!
-        </div>
-        <div [hidden]="!title.errors.minlength">
-          Invalid number format
-        </div>
-        <div [hidden]="!title.errors.number">
-          Accepts only numbers
-        </div>
-        <div [hidden]="!title.errors.maxlength">
-          Invalid number format
-        </div>
-      </div> -->
       <h2 style="margin: 0px 0 15px 0px;">BookMYInsurance</h2>
       <input type="text" class="form-control" id="mobilenumber" required [(ngModel)]="model.phone" name="mobilenumber" pattern="[0-9]*" minlength="10" maxlength="10" #mobile="ngModel" placeholder="Enter your mobile number">
 
