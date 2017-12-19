@@ -35,16 +35,30 @@ export class MainComponent implements OnInit {
   }
 
   showOTPForm() {
-    this.showFormOTP = true;
-    this.showMobForm = false;
     console.log(this.model.mobile);
-    this.insuranceService.sendOTP({ 'phone': this.model.phone})
-      .subscribe((data: any) => {
-        console.log(data);
+    // this.insuranceService.sendOTP({ 'phone': this.model.phone})
+    //   .subscribe((data: any) => {
+    //     console.log(data);
+    //     this.showFormOTP = true;
+    //     this.showMobForm = false;
+    //     if(data.status === 1) {
+    //       this.toastr.custom('<span style="font-size:14px; color:green">Otp has sent to your mobile</span>',
+    //         'Success!', { enableHTML: true }
+    //       );
+    //     }
+    //   });
+    this.insuranceService.sendOTP({ 'phone': this.model.phone}).subscribe(
+      comments => {
+        this.showFormOTP = true;
+        this.showMobForm = false;
         this.toastr.custom('<span style="font-size:14px; color:green">Otp has sent to your mobile</span>',
-          'Success!', { enableHTML: true }
-        );
-      });
+            'Success!', { enableHTML: true }
+          );
+      }, 
+      err => {
+          this.toastr.error('Please install CORS plugin to your browser to run this web app',
+          'Error!');
+      });  
   }
 
   verifyOTP() {

@@ -31,10 +31,16 @@ export class InsuranceServiceService {
     //   .map((response: Response) => response.json());
     const header = new Headers();
     this.createAuthorizationHeader(header);
-    return this.http.post('http://bookmyinsurance.co.in/api/send-otp', data, {
+    // return this.http.post('http://bookmyinsurance.co.in/api/send-otp', data, {
+    //   headers: header
+    // })
+    //   .map((response: Response) => response.json());
+
+    return this.http.post('http://bookmyinsurance.co.in/api/send-otp', data,{
       headers: header
-    })
-      .map((response: Response) => response.json());
+    }) 
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
   }
 
   verifyOTP(data: object): Observable<Object[]> {
