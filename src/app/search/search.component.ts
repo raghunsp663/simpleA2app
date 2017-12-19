@@ -50,7 +50,7 @@ export class SearchComponent implements OnInit {
     this.insuranceService.addVehicle(this.vehicle)
       .subscribe((data: any) => {
         console.log(data);
-        if (data.status === 1) {
+        if (data.status == 1) {
           this.toastr.custom('<span style="font-size:14px; color:green">New vehicle details inserted successfully!!</span>',
             'Success!', { enableHTML: true }
           );
@@ -74,7 +74,7 @@ export class SearchComponent implements OnInit {
     this.insuranceService.searchVehicle({ 'vehicle_no': this.model.search })
       .subscribe((data: any) => {
         console.log(data);
-        if (data.status === 1) {
+        if (data.status == 1) {
           this.toastr.custom('<span style="font-size:14px; color:green">Vehicle details found !!</span>',
             'Success!', { enableHTML: true }
           );

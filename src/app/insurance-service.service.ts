@@ -10,7 +10,7 @@ export class InsuranceServiceService {
   public token: string;
 
   constructor(private http: Http) {
-    this.token = localStorage.getItem('token');
+    
   }
 
   createAuthorizationHeader(headers: Headers) {
@@ -25,6 +25,7 @@ export class InsuranceServiceService {
     headers.append('X-Requested-With', 'XMLHttpRequest');
     headers.append('Authorization', `Bearer ${this.token}`);
   }
+  
 
   sendOTP(data: object): Observable<Object[]> {
     // return this.http.post('http://bookmyinsurance.co.in/api/send-otp', data )
@@ -53,6 +54,7 @@ export class InsuranceServiceService {
   }
 
   searchVehicle(data: object): Observable<Object[]> {
+    this.token = localStorage.getItem('token');
     const header = new Headers();
     this.createAuthorizationHeaderWithToken(header);
     return this.http.post('http://bookmyinsurance.co.in/api/find-vehicle-no', data, {
@@ -62,6 +64,7 @@ export class InsuranceServiceService {
   }
 
   addVehicle(data: object): Observable<Object[]> {
+    this.token = localStorage.getItem('token');
     const header = new Headers();
     this.createAuthorizationHeaderWithToken(header);
     return this.http.post('http://bookmyinsurance.co.in/api/new-vehicle', data, {

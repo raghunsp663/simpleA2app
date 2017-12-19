@@ -67,7 +67,7 @@ export class MainComponent implements OnInit {
       .subscribe((data: any) => {
         console.log(data);
         if (data.status === 1) {
-          const token = data.token;
+          const token = data.data.token;
           localStorage.setItem('token', token);
           this.toastr.custom('<span style="font-size:14px; color:green">Entered OTP is correct</span>',
             'Success!', { enableHTML: true }
