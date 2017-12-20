@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {myInterceptor} from './interceptor';
+import 'rxjs/Rx';
+// import {myInterceptor} from './interceptor';
 
 @Injectable()
 export class InsuranceServiceService {
@@ -41,7 +42,7 @@ export class InsuranceServiceService {
       headers: header
     }) 
     .map((res:Response) => res.json())
-    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
+    .catch((error:any) => error.json()); 
   }
 
   verifyOTP(data: object): Observable<Object[]> {

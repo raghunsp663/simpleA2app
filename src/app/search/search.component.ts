@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit {
           );
           this.searchDetails = false;
           this.addForm = false;
-          this.vehicle = {};
+          // this.vehicle = {};
         } else {
           this.toastr.error('Vehicle details not inserted', 'Oops!');
         }

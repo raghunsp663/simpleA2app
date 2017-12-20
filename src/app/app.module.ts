@@ -29,13 +29,13 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
   ],
   providers: [
     InsuranceServiceService,
-    {
-      provide: myInterceptor,
-      useFactory: (backend: XHRBackend, options: RequestOptions) => {
-        return new myInterceptor(backend, options);
-      },
-      deps: [XHRBackend, RequestOptions]
-    }
+    // {
+    //   provide: myInterceptor,
+    //   useFactory: (backend: XHRBackend, options: RequestOptions) => {
+    //     return new myInterceptor(backend, options);
+    //   },
+    //   deps: [XHRBackend, RequestOptions]
+    // }
   ],
   bootstrap: [AppComponent]
 })
